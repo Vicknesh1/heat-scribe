@@ -1,7 +1,7 @@
 # Foundry Production Dynamic Form Prototype
 
 ## Goal
-Replace the blank starter screen with a functional local-only production control prototype using the selected Frosted Inspection Board direction: steel/glass surfaces, amber/green/blue status signals, industrial typography, dense but readable tables, and a persistent sidebar shell.
+Replace the blank starter screen with a functional local-only production control prototype using the selected Frosted Inspection Board direction: steel/glass surfaces, amber/green/blue status signals, industrial typography, dense but readable tables, and a persistent sidebar shell. Skip the dashboard and open the app directly to the production workflow.
 
 ## User-visible work
 1. **Local login and roles**
@@ -11,15 +11,11 @@ Replace the blank starter screen with a functional local-only production control
    - Include sign-out and a session-aware account area in the sidebar.
 
 2. **Shared app shell and pages**
-   - Add Dashboard, New Production Record, Production Records, and Admin Settings screens with responsive sidebar navigation.
+   - Add New Production Record, Production Records, and Admin Settings screens with responsive sidebar navigation.
    - Keep `/` as the login entry and use named routes for the main pages.
    - Show role-aware navigation and guard admin-only settings in the client-side prototype flow.
 
-3. **Dashboard**
-   - Add operational KPI tiles, line-status indicators, a recent-records preview, and a clear New Record action.
-   - Make KPI values derive from the local record set rather than being disconnected display text.
-
-4. **Dynamic production form**
+3. **Dynamic production form**
    - Organize the requested fields into logical sections with a progress indicator.
    - Support dropdowns, numeric fields, time fields, text inputs, textarea, read-only calculated values, conditional visibility, and grade-driven prototype auto-population.
    - Seed Grade options with 5A, 5B, and 5C; label dependent values as prototype values.
@@ -28,12 +24,12 @@ Replace the blank starter screen with a functional local-only production control
    - Validate required inputs, support Save Draft, and generate sequential `FR-YYYYMMDD-###` numbers.
    - Add a review-before-submit step and persist draft/submitted records locally.
 
-5. **Records and admin settings**
+4. **Records and admin settings**
    - Build the requested records table with role-aware filtering and status/date presentation.
    - Let Admin add, edit, and disable dropdown options and demo users through simple local controls.
    - Keep disabled options/users from being used for new entries while preserving existing record display.
 
-6. **Visual system and metadata**
+5. **Visual system and metadata**
    - Replace starter color tokens with semantic industrial tokens based on the selected direction and load Chakra Petch plus IBM Plex Mono through the root head.
    - Use accessible labels, focus states, responsive layouts, reduced-motion-safe status animation, and no invented foundry formulas.
    - Add route-specific title, description, Open Graph, and Twitter metadata for each content route, removing starter metadata from the root where leaf metadata should own it.
@@ -43,9 +39,9 @@ Replace the blank starter screen with a functional local-only production control
 - Use localStorage only; no Lovable Cloud, backend, database, analytics, Docker, IoT, or reporting work.
 - Use TanStack Router route files and `<Link>` navigation. Avoid a server-backed auth guard; hydrate local session state in the browser to prevent SSR mismatch.
 - Reuse the existing Tailwind v4 setup and semantic token classes; avoid hardcoded component colors and inline visual style objects.
-- Add the required demo data in the client-side storage initialization so the first dashboard and records screen are useful immediately.
+- Add the required demo data in the client-side storage initialization so the first production-record and records screens are useful immediately.
 
 ## Verification
 - Check the build and preview diagnostics.
-- Exercise both demo logins, role visibility, new-record validation, grade auto-population, live duration calculations, draft save, review/submit, record filtering, sign-out, and admin option/user controls.
+- Exercise both demo logins, role visibility, direct production-workflow entry, new-record validation, grade auto-population, live duration calculations, draft save, review/submit, record filtering, sign-out, and admin option/user controls.
 - Verify the main screens at desktop and narrow responsive widths, including no horizontal overflow and no console/runtime errors.
