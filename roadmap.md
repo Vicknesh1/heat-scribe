@@ -1,5 +1,5 @@
-- [ ] Build local role login and direct production workflow shell
-- [ ] Build dynamic production record form with calculations, review, draft, and submit
-- [ ] Build records table with role-based visibility
-- [ ] Build admin settings for dropdown options and users
-- [ ] Apply industrial visual system, route metadata, and verify preview flows
+- [x] Build local role login and direct production workflow shell
+- [x] Build dynamic production record form with calculations, review, draft, and submit
+- [x] Build records table with role-based visibility
+- [x] Build admin settings for dropdown options and users
+- [x] Apply industrial visual system, route metadata, and verify preview flows
