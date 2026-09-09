@@ -19,7 +19,11 @@ export type FormSection = {
 
 const select = (key: string, label: string, optionKey: string, required = false): FieldDefinition => ({ key, label, type: "select", optionKey, required });
 const text = (key: string, label: string, required = false): FieldDefinition => ({ key, label, type: "text", required });
-const number = (key: string, label: string, unit?: string, required = false): FieldDefinition => ({ key, label, type: "number", unit, required });
+const number = (key: string, label: string, unit?: string, required = false): FieldDefinition => {
+  const field: FieldDefinition = { key, label, type: "number", required };
+  if (unit !== undefined) field.unit = unit;
+  return field;
+};
 const time = (key: string, label: string): FieldDefinition => ({ key, label, type: "time" });
 
 export const formSections: FormSection[] = [
@@ -153,7 +157,7 @@ export const gradePrototypeValues: Record<string, Record<string, string>> = {
 export function durationBetween(start?: string, end?: string) {
   if (!start || !end) return "—";
   const toMinutes = (value: string) => {
-    const [hours, minutes] = value.split(":").map(Number);
+    const [hours = 0, minutes = 0] = value.split(":").map(Number);
     return hours * 60 + minutes;
   };
   let difference = toMinutes(end) - toMinutes(start);
@@ -163,18 +167,18 @@ export function durationBetween(start?: string, end?: string) {
 
 export function calculateValues(values: FormValues) {
   return {
-    preheat1Duration: durationBetween(values.preheat1Start, values.preheat1End),
-    preheat2Duration: durationBetween(values.preheat2Start, values.preheat2End),
-    preheat3Duration: durationBetween(values.preheat3Start, values.preheat3End),
-    totalFurnaceTime: durationBetween(values.furnaceOnTime, values.furnaceOffTime),
+    preheat1Duration: durationBetween(values["preheat1Start"], values["preheat1End"]),
+    preheat2Duration: durationBetween(values["preheat2Start"], values["preheat2End"]),
+    preheat3Duration: durationBetween(values["preheat3Start"], values["preheat3End"]),
+    totalFurnaceTime: durationBetween(values["furnaceOnTime"], values["furnaceOffTime"]),
     proposedWeight: "—",
   };
 }
 
 export function getVisibleFields(section: FormSection, values: FormValues) {
   return section.fields.filter((field) => {
-    if (["tapping2Start", "tapping2Temperature"].includes(field.key)) return values.numberOfTapping === "2" || values.numberOfTapping === "3";
-    if (["tapping3Start", "tapping3Temperature"].includes(field.key)) return values.numberOfTapping === "3";
+    if (["tapping2Start", "tapping2Temperature"].includes(field.key)) return values["numberOfTapping"] === "2" || values["numberOfTapping"] === "3";
+    if (["tapping3Start", "tapping3Temperature"].includes(field.key)) return values["numberOfTapping"] === "3";
     return true;
   });
 }
